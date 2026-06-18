@@ -30,9 +30,11 @@ const toggleTheme = () => {
       try {
 
         const data =
-          await getProducts();
+  await getProducts();
 
-        setProducts(data);
+console.log("Products:", data);
+
+setProducts(data);
 
       } catch (error) {
 
