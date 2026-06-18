@@ -40,8 +40,50 @@ const addToCart = async (
 
   return res.data;
 };
+const removeCartItem = async (
+  productId,
+  token
+) => {
 
+  const res =
+    await axios.delete(
+      `${API}/api/cart/remove/${productId}`,
+      {
+        headers: {
+          Authorization:
+            `Bearer ${token}`
+        }
+      }
+    );
+
+  return res.data;
+};
+const updateCartItem = async (
+  productId,
+  quantity,
+  token
+) => {
+
+  const res =
+    await axios.put(
+      `${API}/api/cart/update`,
+      {
+        productId,
+        quantity
+      },
+      {
+        headers: {
+          Authorization:
+            `Bearer ${token}`
+        }
+      }
+    );
+
+  return res.data;
+};
 export default {
   getCart,
-  addToCart
+  addToCart,
+  removeCartItem,
+  updateCartItem
 };

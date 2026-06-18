@@ -10,7 +10,9 @@ export const CartProvider =
   ({ children }) => {
 
   const [cart, setCart] =
-    useState([]);
+    useState({
+      items: []
+    });
 
   return (
     <CartContext.Provider

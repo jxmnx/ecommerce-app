@@ -91,9 +91,11 @@ exports.updateCartItem = async (req, res) => {
       item.quantity = quantity;
     }
 
-    await cart.save();
+   await cart.save();
 
-    res.json(cart);
+await cart.populate("items.product");
+
+res.json(cart);
 
   } catch (error) {
     res.status(500).json({
@@ -122,7 +124,9 @@ exports.removeCartItem = async (
 
     await cart.save();
 
-    res.json(cart);
+await cart.populate("items.product");
+
+res.json(cart);
 
   } catch (error) {
     res.status(500).json({
