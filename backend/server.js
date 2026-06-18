@@ -27,6 +27,13 @@ app.use(
   require("./routes/cartRoutes")
 );
 
+app.use(
+  "/api/orders",
+  require(
+    "./routes/orderRoutes"
+  )
+);
+
 app.get("/", (req, res) => {
   res.send("E-Commerce API Running");
 });
