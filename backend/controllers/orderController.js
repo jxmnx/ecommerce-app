@@ -142,3 +142,54 @@ exports.updateOrderStatus =
       });
     }
   };
+  exports.cancelOrder =
+  async (req, res) => {
+
+  try {
+
+    const order =
+      await Order.findById(
+        req.params.id
+      );
+
+    if (!order) {
+      return res.status(404).json({
+        message:
+          "Order not found"
+      });
+    }
+
+    if (
+      order.user.toString() !==
+      req.user._id.toString()
+    ) {
+      return res.status(403).json({
+        message:
+          "Unauthorized"
+      });
+    }
+
+    if (
+      order.status !== "Pending"
+    ) {
+      return res.status(400).json({
+        message:
+          "Only pending orders can be cancelled"
+      });
+    }
+
+    order.status =
+      "Cancelled";
+
+    await order.save();
+
+    res.json(order);
+
+  } catch (error) {
+
+    res.status(500).json({
+      message:
+        error.message
+    });
+  }
+};

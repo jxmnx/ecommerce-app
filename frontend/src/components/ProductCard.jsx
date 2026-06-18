@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import cartService from "../services/cartService";
 
@@ -6,6 +7,7 @@ function ProductCard({ product }) {
 
   const { setCart } =
     useContext(CartContext);
+   const navigate = useNavigate(); 
 
   const handleAddToCart =
     async () => {
@@ -43,8 +45,30 @@ function ProductCard({ product }) {
 
   return (
     <div className="product-card">
+    <img
+  src={product.image}
+  alt={product.name}
+  style={{
+    width: "100%",
+    height: "220px",
+    objectFit: "cover",
+    borderRadius: "10px",
+    marginBottom: "15px"
+  }}
+/>    
 
-      <h3>{product.name}</h3>
+      <h3
+  style={{
+    cursor: "pointer"
+  }}
+  onClick={() =>
+    navigate(
+      `/product/${product._id}`
+    )
+  }
+>
+  {product.name}
+</h3>
 
       <p>{product.description}</p>
 

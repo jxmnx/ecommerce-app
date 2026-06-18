@@ -29,11 +29,12 @@ const OrderSchema = new mongoose.Schema(
     status: {
       type: String,
       enum: [
-        "Pending",
-        "Processing",
-        "Shipped",
-        "Delivered"
-      ],
+  "Pending",
+  "Processing",
+  "Shipped",
+  "Delivered",
+  "Cancelled"
+],
       default: "Pending"
     }
   },

@@ -41,7 +41,45 @@ function MyOrders() {
     fetchOrders();
 
   }, []);
+const handleCancel =
+  async (orderId) => {
 
+  try {
+
+    const user =
+      JSON.parse(
+        localStorage.getItem(
+          "user"
+        )
+      );
+
+    const updatedOrder =
+      await orderService.cancelOrder(
+        orderId,
+        user.token
+      );
+
+    setOrders(
+      orders.map(order =>
+        order._id === orderId
+          ? updatedOrder
+          : order
+      )
+    );
+
+    alert(
+      "Order cancelled"
+    );
+
+  } catch (error) {
+
+    console.log(error);
+
+    alert(
+      "Unable to cancel order"
+    );
+  }
+};
   return (
     <div
       style={{
@@ -71,9 +109,23 @@ function MyOrders() {
           </p>
 
           <h3>
-            ₹
-            {order.totalAmount}
-          </h3>
+  ₹
+  {order.totalAmount}
+</h3>
+
+{order.status ===
+  "Pending" && (
+  <button
+    className="remove-btn"
+    onClick={() =>
+      handleCancel(
+        order._id
+      )
+    }
+  >
+    Cancel Order
+  </button>
+)}
 
         </div>
 

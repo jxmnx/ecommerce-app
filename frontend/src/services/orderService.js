@@ -39,8 +39,28 @@ const getMyOrders = async (
 
   return res.data;
 };
+const cancelOrder =
+  async (
+    orderId,
+    token
+  ) => {
 
+  const res =
+    await axios.put(
+      `${API}/api/orders/${orderId}/cancel`,
+      {},
+      {
+        headers: {
+          Authorization:
+            `Bearer ${token}`
+        }
+      }
+    );
+
+  return res.data;
+};
 export default {
   placeOrder,
-  getMyOrders
+  getMyOrders,
+  cancelOrder
 };

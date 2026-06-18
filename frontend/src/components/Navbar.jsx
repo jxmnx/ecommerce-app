@@ -29,6 +29,17 @@ function Navbar({ darkMode, toggleTheme }) {
         <Link to="/cart">
           Cart ({cartCount})
         </Link>
+        {user && (
+  <Link to="/profile">
+    Profile
+  </Link>
+)}
+
+        {user && (
+          <Link to="/orders">
+            Orders
+          </Link>
+        )}
 
         {!user ? (
           <>
@@ -41,12 +52,18 @@ function Navbar({ darkMode, toggleTheme }) {
             </Link>
           </>
         ) : (
-          <button
-            className="logout-btn"
-            onClick={logoutUser}
-          >
-            Logout
-          </button>
+          <>
+            <span>
+              Hi, {user.name}
+            </span>
+
+            <button
+              className="logout-btn"
+              onClick={logoutUser}
+            >
+              Logout
+            </button>
+          </>
         )}
 
         <button

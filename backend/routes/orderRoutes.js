@@ -8,7 +8,8 @@ const {
   placeOrder,
   getMyOrders,
   getAllOrders,
-  updateOrderStatus
+  updateOrderStatus,
+  cancelOrder
 } = require(
   "../controllers/orderController"
 );
@@ -35,6 +36,13 @@ router.get(
   "/my-orders",
   protect,
   getMyOrders
+);
+
+/* ADD THIS HERE */
+router.put(
+  "/:id/cancel",
+  protect,
+  cancelOrder
 );
 
 router.get(
