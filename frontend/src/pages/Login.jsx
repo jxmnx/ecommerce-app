@@ -2,7 +2,7 @@ import { useState } from "react";
 import { loginUser } from "../services/authService";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-
+import "../styles/Login.css";
 function Login() {
   const navigate = useNavigate();
 
@@ -57,6 +57,9 @@ function Login() {
         className="auth-form"
         onSubmit={handleSubmit}
       >
+        <div className="auth-logo">
+  Shop<span>Sphere</span>
+</div>
         <h1>Login</h1>
 
         <input

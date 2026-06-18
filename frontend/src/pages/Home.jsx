@@ -20,7 +20,8 @@ const toggleTheme = () => {
 
   const [products, setProducts] =
     useState([]);
-
+  const [search, setSearch] =
+  useState("");
   useEffect(() => {
 
     const fetchProducts =
@@ -42,7 +43,15 @@ const toggleTheme = () => {
     fetchProducts();
 
   }, []);
-
+const filteredProducts =
+  products.filter(
+    product =>
+      product.name
+        .toLowerCase()
+        .includes(
+          search.toLowerCase()
+        )
+  );
  return (
   <div className={darkMode ? "dark" : "light"}>
 
@@ -69,10 +78,37 @@ const toggleTheme = () => {
 
       </section>
 
-      <section
-        className="products-grid"
-      >
-        {products.map(
+<div
+  style={{
+    padding:
+      "0 80px 30px"
+  }}
+>
+  <input
+    type="text"
+    placeholder=
+      "Search products..."
+    value={search}
+    onChange={(e) =>
+      setSearch(
+        e.target.value
+      )
+    }
+    style={{
+      width: "100%",
+      padding: "15px",
+      borderRadius: "10px",
+      border:
+        "1px solid #ccc",
+      fontSize: "16px"
+    }}
+  />
+</div>
+
+<section
+  className="products-grid"
+>
+        {filteredProducts.map(
           (product) => (
             <ProductCard
               key={product._id}

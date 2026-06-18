@@ -5,12 +5,18 @@ import {
 
 import orderService
   from "../services/orderService";
+import Navbar from "../components/Navbar";
 
 function MyOrders() {
 
   const [orders, setOrders] =
     useState([]);
+  const [darkMode, setDarkMode] =
+  useState(false);
 
+const toggleTheme = () => {
+  setDarkMode(!darkMode);
+};
   useEffect(() => {
 
     const fetchOrders =
@@ -80,7 +86,20 @@ const handleCancel =
     );
   }
 };
-  return (
+ return (
+  <div
+    className={
+      darkMode
+        ? "dark"
+        : "light"
+    }
+  >
+
+    <Navbar
+      darkMode={darkMode}
+      toggleTheme={toggleTheme}
+    />
+
     <div
       style={{
         padding:"40px"
@@ -131,6 +150,7 @@ const handleCancel =
 
       ))}
     </div>
+  </div>
   );
 }
 

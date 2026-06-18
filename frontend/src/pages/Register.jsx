@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { registerUser } from "../services/authService";
 import { useNavigate } from "react-router-dom";
-
+import "../styles/Login.css";
 function Register() {
   const navigate = useNavigate();
 
@@ -42,6 +42,9 @@ function Register() {
         className="auth-form"
         onSubmit={handleSubmit}
       >
+        <div className="auth-logo">
+  Shop<span>Sphere</span>
+</div>
         <h1>Create Account</h1>
 
         <input
